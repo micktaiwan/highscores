@@ -17,5 +17,18 @@ class HighscoresController < ApplicationController
     redirect :action=>index
   end
 
+  def level
+    game    = params[:game]
+    if game != nil
+      game_id = Game.find_by_name(game)
+    else
+      game_id = Game.find(params[:game_id])
+    end
+    level   = params[:level]
+    @game = game_id.name
+    @level = level
+    @scores = Highscore.find(:all, :conditions=>["game_id=? and level=?", game_id, level], :order=>"score", :limit=>1000)
+  end
+
 end
 
