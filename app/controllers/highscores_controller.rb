@@ -38,7 +38,7 @@ class HighscoresController < ApplicationController
       game_id = Game.find(params[:game_id])
     end
     @game = game_id.name
-    @scores = Highscore.find(:all, :select=>"*, sum(score) s", :conditions=>["game_id=?", game_id], :order=>"s", :limit=>1000, :group=>"player")
+    @scores = Highscore.find(:all, :select=>"*, sum(score)/count(*) s", :conditions=>["game_id=?", game_id], :order=>"s", :limit=>1000, :group=>"player")
   end
 
 end
