@@ -1,0 +1,6 @@
+<h2><%=@game%> - All levels</h2>
+1000 best scores:<br/>
+<ol>
+<%= render(:partial=>"level", :collection=>@scores) %>
+</ol>
+
