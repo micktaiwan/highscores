@@ -1,6 +1,6 @@
 class HighscoresController < ApplicationController
 
-  protect_from_forgery :except => [:create]
+  protect_from_forgery :except => [:create, :delete_level_scores]
 
   def index
     @last       = Highscore.find(:all, :order=>"created_at desc", :limit=>20)
