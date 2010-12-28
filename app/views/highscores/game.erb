@@ -1,6 +1,7 @@
 <h2><%=@game%> - All levels</h2>
-1000 best scores:<br/>
+<% @scores.keys.sort.each do |level| %>
+Level <%= level %>
 <ol>
-<%= render(:partial=>"all", :collection=>@scores) %>
+<%= render(:partial=>"level", :collection=>@scores[level]) %>
 </ol>
-
+<% end %>
