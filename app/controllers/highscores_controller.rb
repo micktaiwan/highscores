@@ -14,7 +14,7 @@ class HighscoresController < ApplicationController
     game_id = Game.find_by_name(game)
     game_id = Game.create(:name=>game).id if not game_id
     Highscore.create(:game_id=>game_id, :level=>level, :player=>player, :score=>score)
-    redirect :action=>index
+    render(:nothing=>true)
   end
 
   def level
@@ -52,7 +52,8 @@ class HighscoresController < ApplicationController
       game_id = Game.find(params[:game_id])
     end
     level   = params[:level].to_i
-    Highscore.delete_if { |h| h.game_id == game_id.id and h.level == level}
+    Highscore.delete_all(["game_id = ? and level = ?",game_id.id, level])
+    render(:nothing=>true)
   end
 end
 
