@@ -49,10 +49,10 @@ class HighscoresController < ApplicationController
     if game != nil
       game_id = Game.find_by_name(game).id
     else
-      game_id = Game.find(params[:game_id])
+      game_id = Game.find(params[:game_id]).id
     end
     level   = params[:level].to_i
-    Highscore.delete_all(["game_id = ? and level = ?",game_id.id, level])
+    Highscore.delete_all(["game_id = ? and level = ?",game_id, level])
     render(:nothing=>true)
   end
 end
