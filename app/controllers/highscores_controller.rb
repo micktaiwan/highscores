@@ -25,7 +25,7 @@ class HighscoresController < ApplicationController
       game_id = Game.find(params[:game_id])
     end
     level   = params[:level]
-    @game = game_id.name
+    @game = game_id
     @level = level
     @scores = Highscore.find(:all, :conditions=>["game_id=? and level=?", game_id, level], :order=>"score", :limit=>1000)
   end
@@ -37,8 +37,7 @@ class HighscoresController < ApplicationController
     else
       game_id = Game.find(params[:game_id])
     end
-    @game = game_id.name
-
+    @game = game_id
     @scores = Hash.new
     s = Highscore.find(:all, :select=>"level", :conditions=>["game_id=?", game_id], :order=>"score")
     levels = s.map{|l| l.level}.uniq

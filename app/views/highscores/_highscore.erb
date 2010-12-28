@@ -1,5 +1,5 @@
 <li>
-[<%= highscore.game.name %>]
+[<a href="/highscores/game?game_id=<%=highscore.game.id%>"><%= highscore.game.name %></a>]
 <%= highscore.player %> (<a href="/highscores/level?game_id=<%=highscore.game.id%>&level=<%=highscore.level%>">level <%= highscore.level %></a>):
 <%= highscore.score %>
 (<%= time_ago_in_words(highscore.created_at) %> ago)

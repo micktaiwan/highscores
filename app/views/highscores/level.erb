@@ -1,4 +1,4 @@
-<h2><%=@game%> - Level <%=@level%></h2>
+<h2><a href="/highscores/game?game_id=<%=@game.id%>"><%=@game.name%></a> - Level <%=@level%></h2>
 1000 best scores:<br/>
 <ol>
 <%= render(:partial=>"level", :collection=>@scores) %>

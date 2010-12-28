@@ -1,6 +1,6 @@
-<h2><%=@game%> - All levels</h2>
+<h2><%=@game.name%> - All levels</h2>
 <% @scores.keys.sort.each do |level| %>
-Level <%= level %>
+<a href="/highscores/level?game_id=<%=@game.id%>&level=<%=level%>">Level <%= level %></a>
 <ol>
 <%= render(:partial=>"level", :collection=>@scores[level]) %>
 </ol>
