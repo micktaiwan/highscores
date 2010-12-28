@@ -44,5 +44,15 @@ class HighscoresController < ApplicationController
     levels.each { |l| @scores[l] = Highscore.find(:all, :conditions=>["game_id=? and level=?", game_id, l], :order=>"score", :limit=>3)}
   end
 
+  def delete_level_scores
+    game    = params[:game]
+    if game != nil
+      game_id = Game.find_by_name(game).id
+    else
+      game_id = Game.find(params[:game_id])
+    end
+    level   = params[:level].to_i
+    Highscore.delete_if { |h| h.game_id == game_id.id and h.level == level}
+  end
 end
 
